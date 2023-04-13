@@ -3,7 +3,7 @@ import GridItems from "../Components/GridItems";
 function Dashboard() {
   return (
     <GridItems>
-      <div>Dashboard</div>
+      <p>Dashboard</p>
       <div>Dashboard</div>
     </GridItems>
   );
