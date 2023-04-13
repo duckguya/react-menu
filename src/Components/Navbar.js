@@ -1,9 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(true);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
 
   const handleClick = () => {
     setIsOpen((prevState) => !prevState);
@@ -28,6 +30,7 @@ function Navbar() {
             viewBox="0 0 24 24"
             width="24px"
             onClick={handleClick}
+            isOpen={isOpen}
           >
             <path d="M0 0h24v24H0V0z" fill="none" />
             <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" />
@@ -44,7 +47,11 @@ function Navbar() {
                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
               </Svg>
             </SvgWrapper>
-            <input type="text" placeholder="Search..." />
+            {isOpen ? (
+              <input type="text" placeholder="Search..." />
+            ) : (
+              <input type="text" />
+            )}
           </ItemWrapperColor>
           <Item>
             <SvgWrapper>
@@ -177,15 +184,17 @@ function Navbar() {
 
 const Container = styled.div`
   position: fixed;
+  width: 100%;
+  height: 100%;
   background-color: transparent;
+  z-index: 99;
 `;
 
 const Wrapper = styled.div`
-  background-color: white;
   position: relative;
   height: calc(100vh - 100px);
   width: ${(props) => (props.isOpen ? "240px" : "80px")};
-  margin: 50px 0 50px 50px;
+  background-color: ${(props) => props.theme.boardColor};
   border-radius: 15px;
   padding: 10px;
   box-shadow: gray 1px 1px 15px -5px;
@@ -203,12 +212,9 @@ const ToggleButton = styled.div`
   width: 30px;
   height: 16px;
   border-radius: 8px;
-  background-color: #ccc;
   background-color: ${({ isDark }) => (isDark ? "#fff" : "#ccc")};
   margin-left: auto;
-
   cursor: pointer;
-
   &:after {
     content: "";
     position: absolute;
@@ -218,10 +224,8 @@ const ToggleButton = styled.div`
     height: 12px;
     border-radius: 50%;
     background-color: ${({ isDark }) => (isDark ? "#000" : "#fff")};
-
     transition: all 0.2s;
   }
-
   &.active {
     &:after {
       transform: translateX(14px);
@@ -235,14 +239,18 @@ const Items = styled.div`
   color: #7f7f7f;
   padding: 10px;
 `;
-const ItemLogoWrapper = styled(Items)``;
+const ItemLogoWrapper = styled(Items)`
+  p {
+    margin-left: 10px;
+  }
+`;
 const Item = styled(Items)`
   &:hover {
-    background-color: #a6d9ff;
+    background-color: ${(props) => props.theme.hoverBackColor};
     border-radius: 10px;
   }
   &:active {
-    background-color: #43b1ff;
+    background-color: ${(props) => props.theme.mainColor};
     color: white;
     svg {
       fill: white;
@@ -254,7 +262,7 @@ const Item = styled(Items)`
 
 const ItemWrapperColor = styled(Items)`
   margin: 10px;
-  background-color: #f7f4ff;
+  background-color: ${(props) => props.theme.medium};
   border-radius: 10px;
   align-content: center;
   input {
@@ -266,15 +274,6 @@ const ItemWrapperColor = styled(Items)`
   }
 `;
 
-// const SearchWrapper = styled.div`
-//   background-color: #f7f4ff;
-//   width: 100%;
-//   border-radius: 10px;
-//   display: flex;
-//   padding: 10px;
-//   align-items: center;
-// `;
-
 const Svg = styled.svg`
   fill: #7f7f7f;
 `;
@@ -285,7 +284,6 @@ const SvgWrapper = styled.div`
 `;
 
 const Logo = styled.div`
-  margin-right: 10px;
   background-image: url("/images/IMx512.png");
   background-size: 100% 100%;
   background-position: center;
@@ -295,9 +293,10 @@ const Logo = styled.div`
 `;
 const Arrow = styled.svg`
   position: absolute;
-  right: -15px;
+  transform: ${(props) => (props.isOpen ? "scaleX(-1)" : "scaleX(1)")};
+  right: -10px;
   top: 28px;
-  background-color: #43b1ff;
+  background-color: ${(props) => props.theme.mainColor};
   fill: white;
   border-radius: 50px;
   cursor: pointer;

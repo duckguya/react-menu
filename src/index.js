@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { theme } from "./theme";
+import { RecoilRoot } from "recoil";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
@@ -60,7 +60,6 @@ table {
 body {
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
-  /* background-color: black; */
   line-height: 1.2;
   overflow-x:hidden // 가로 스크롤바 없애기
 }
@@ -75,10 +74,10 @@ a {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <RecoilRoot>
       <GlobalStyle />
       <App />
-    </ThemeProvider>
+    </RecoilRoot>
   </React.StrictMode>
 );
 

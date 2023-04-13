@@ -10,6 +10,7 @@ const Container = styled.div`
   margin: 50px 50px 50px 350px;
   box-shadow: gray 1px 1px 15px -5px;
   border-radius: 15px;
+  background-color: white;
 `;
 
 export default GridItems;
