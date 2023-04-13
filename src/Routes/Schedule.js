@@ -1,5 +1,6 @@
+import GridItems from "../Components/GridItems";
 function Schedule() {
-  return <div>Schedule</div>;
+  return <GridItems />;
 }
 
 export default Schedule;

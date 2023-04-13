@@ -1,5 +1,6 @@
+import GridItems from "../Components/GridItems";
 function User() {
-  return <div>User</div>;
+  return <GridItems />;
 }
 
 export default User;

@@ -1,5 +1,7 @@
+import Board from "../Components/Dashboard";
+
 function Analytics() {
-  return <div>Analytics</div>;
+  return <Board />;
 }
 
 export default Analytics;

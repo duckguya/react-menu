@@ -1,5 +1,6 @@
+import Board from "../Components/Dashboard";
 function Likes() {
-  return <div>Likes</div>;
+  return <Board />;
 }
 
 export default Likes;

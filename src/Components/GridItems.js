@@ -1,7 +1,15 @@
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 function GridItems() {
-  return <Container />;
+  const location = useLocation();
+  let title = location.pathname.replace("/", "");
+
+  return (
+    <Container>
+      <p>{title === "" ? "dashboard" : title}</p>
+    </Container>
+  );
 }
 
 const Container = styled.div`
