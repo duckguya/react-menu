@@ -1,7 +1,12 @@
-import Board from "../Components/Dashboard";
+import GridItems from "../Components/GridItems";
+import Board from "../Components/Analytics";
 
 function Analytics() {
-  return <Board />;
+  return (
+    <GridItems>
+      <Board />
+    </GridItems>
+  );
 }
 
 export default Analytics;

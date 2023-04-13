@@ -1,12 +1,5 @@
-import GridItems from "./GridItems";
-
 function Dashboard() {
-  return (
-    <GridItems>
-      <div>Dashboard</div>
-      <p>Dashboard</p>
-    </GridItems>
-  );
+  return <h1>Dashboard</h1>;
 }
 
 export default Dashboard;

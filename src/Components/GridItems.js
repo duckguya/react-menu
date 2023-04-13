@@ -1,5 +1,10 @@
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
+import Dashboard from "./Dashboard";
+import Schedule from "../Routes/Schedule";
+import Analytics from "../Routes/Analytics";
+import Likes from "../Routes/Likes";
+import User from "../Routes/User";
 
 function GridItems() {
   const location = useLocation();
@@ -7,7 +12,19 @@ function GridItems() {
 
   return (
     <Container>
-      <p>{title === "" ? "dashboard" : title}</p>
+      {title === "" ? (
+        <Dashboard />
+      ) : title === "schedule" ? (
+        <Schedule />
+      ) : title === "analytics" ? (
+        <Analytics />
+      ) : title === "likes" ? (
+        <Likes />
+      ) : title === "user" ? (
+        <User />
+      ) : (
+        ""
+      )}
     </Container>
   );
 }
@@ -18,7 +35,7 @@ const Container = styled.div`
   margin: 50px 50px 50px 350px;
   box-shadow: gray 1px 1px 15px -5px;
   border-radius: 15px;
-  background-color: white;
+  background-color: ${(props) => props.theme.boardColor};
 `;
 
 export default GridItems;

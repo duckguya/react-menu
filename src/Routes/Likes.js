@@ -1,6 +1,11 @@
-import Board from "../Components/Dashboard";
+import GridItems from "../Components/GridItems";
+import Board from "../Components/Likes";
 function Likes() {
-  return <Board />;
+  return (
+    <GridItems>
+      <Board />
+    </GridItems>
+  );
 }
 
 export default Likes;
