@@ -10,6 +10,7 @@ import User from "./Routes/User";
 import { isDarkAtom } from "./atoms";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./theme";
+
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 html, body, div, span, applet, object, iframe,
@@ -77,6 +78,7 @@ a {
   color:inherit;
 }
 `;
+
 function App() {
   const isDark = useRecoilValue(isDarkAtom);
 
