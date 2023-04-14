@@ -54,7 +54,7 @@ function Navbar() {
               <input type="text" />
             )}
           </ItemWrapperColor>
-          <Link to="/">
+          <Link to={"/"}>
             <Item>
               <SvgWrapper>
                 <Svg
@@ -71,7 +71,7 @@ function Navbar() {
             </Item>
           </Link>
 
-          <Link to="schedule">
+          <Link to={"/schedule"}>
             <Item>
               <SvgWrapper>
                 <Svg
@@ -87,7 +87,7 @@ function Navbar() {
               <p>Schedule</p>
             </Item>
           </Link>
-          <Link to="/analytics">
+          <Link to={"/analytics"}>
             <Item>
               <SvgWrapper>
                 <Svg
@@ -112,7 +112,7 @@ function Navbar() {
               <p>Analytics</p>
             </Item>
           </Link>
-          <Link to="likes">
+          <Link to={"/likes"}>
             <Item>
               <SvgWrapper>
                 <Svg
@@ -128,7 +128,7 @@ function Navbar() {
               <p>Likes</p>
             </Item>
           </Link>
-          <Link to="user">
+          <Link to={"/users"}>
             <Item>
               <SvgWrapper>
                 <Svg

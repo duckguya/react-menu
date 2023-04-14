@@ -92,7 +92,7 @@ function App() {
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/likes" element={<Likes />} />
-          <Route path="/user" element={<User />} />
+          <Route path="/users" element={<User />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
