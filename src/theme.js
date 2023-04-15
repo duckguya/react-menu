@@ -5,6 +5,7 @@ export const darkTheme = {
   light: "#3a3b3d",
   hoverBackColor: "#3a3b3d",
   mainColor: "#3a3b3d",
+  fontColor: "#fff",
 };
 // e34a68 pink
 // 3688ff blue
@@ -16,4 +17,5 @@ export const lightTheme = {
   light: "#fff",
   hoverBackColor: "#a6d9ff",
   mainColor: "#43b1ff",
+  fontColor: "#252527",
 };

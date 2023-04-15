@@ -168,8 +168,8 @@ function Navbar() {
 
             <p>Logout</p>
           </Item>
-          <ItemWrapperColor>
-            <SvgWrapper>
+          <ItemWrapperColor style={{ padding: isOpen ? "" : "10px 0" }}>
+            <SvgWrapper style={{ display: isOpen ? "block" : "none" }}>
               {isOpen ? (
                 <Svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -188,6 +188,7 @@ function Navbar() {
             <p>Dark Mode</p>
             <ToggleButton
               isDark={isDark}
+              isOpen={isOpen}
               onClick={handleToggle}
               className={isDark ? "active" : ""}
             />
@@ -222,44 +223,21 @@ const Wrapper = styled.div`
   transition: all 0.5s ease;
 `;
 
-// const ToggleButton = styled.div`
-//   position: relative;
-//   width: 30px;
-//   height: 16px;
-//   border-radius: 8px;
-//   background-color: ${({ isDark }) => (isDark ? "#fff" : "#ccc")};
-//   margin-left: auto;
-//   cursor: pointer;
-//   &:after {
-//     content: "";
-//     position: absolute;
-//     top: 2.5px;
-//     left: 2.5px;
-//     width: 12px;
-//     height: 12px;
-//     border-radius: 50%;
-//     background-color: ${({ isDark }) => (isDark ? "#000" : "#fff")};
-//     transition: all 0.2s;
-//   }
-//   &.active {
-//     &:after {
-//       transform: translateX(14px);
-//     }
-//   }
-// `;
 const ToggleButton = styled.div`
   position: relative;
   width: 30px;
-  height: 16px;
+  height: 17px;
   border-radius: 8px;
   background-color: ${({ isDark }) => (isDark ? "#fff" : "#ccc")};
-  margin-left: auto;
+  margin-left: ${(props) => (props.isOpen ? "auto" : "")};
+  margin: ${(props) => (props.isOpen ? "" : "auto")};
+
   cursor: pointer;
   &:after {
     content: "";
     position: absolute;
     top: 2.5px;
-    left: 1px;
+    left: 3px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -305,6 +283,7 @@ const ItemWrapperColor = styled(Items)`
   background-color: ${(props) => props.theme.medium};
   border-radius: 10px;
   align-content: center;
+  transition: all 0.5s ease;
   input {
     border: none;
     background-color: transparent;
@@ -339,6 +318,7 @@ const Arrow = styled.svg`
   background-color: ${(props) => props.theme.mainColor};
   fill: white;
   border-radius: 50px;
+  transition: all 0.5s ease;
   cursor: pointer;
   &:active {
     width: 20px;

@@ -69,6 +69,7 @@ body {
   line-height: 1.2;
   overflow-x:hidden; // 가로 스크롤바 없애기
   background-color: ${(props) => props.theme.light};
+  transition: all 0.5s ease;
 }
 /* body::-webkit-scrollbar {
     display: none;
