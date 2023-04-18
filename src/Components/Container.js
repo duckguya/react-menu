@@ -9,7 +9,6 @@ function Container({ children }) {
 }
 
 const StyledContainer = styled.div`
-  /* width: 100%; */
   padding: 20px;
   height: calc(100vh - 100px);
   margin: ${(props) =>
@@ -20,6 +19,10 @@ const StyledContainer = styled.div`
   color: ${(props) => props.theme.fontColor};
   transition: all 0.5s ease;
   /* @media screen and (max-width: 768px) {
+    position: absolute;
+    margin: ${(props) =>
+    props.isOpen ? "100px 50px 50px 50px" : "100px 50px 50px 50px"};
+    width: calc(100vw - 100px);
   } */
 `;
 export default Container;

@@ -29,8 +29,22 @@ function Navbar() {
   const handleToggle = () => {
     setIsDark(!isDark);
   };
+  const handleLogout = () => {
+    window.confirm("로그아웃 하시겠습니까?");
+  };
   return (
     <Container>
+      <Arrow
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 0 24 24"
+        width="24px"
+        onClick={handleClick}
+        isOpen={isOpen}
+      >
+        <path d="M0 0h24v24H0V0z" fill="none" />
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" />
+      </Arrow>
       <Wrapper isOpen={isOpen}>
         <ItemTopWrapper>
           <ItemLogoWrapper>
@@ -40,17 +54,7 @@ function Navbar() {
               <p style={{ fontSize: "12px" }}>Web Developer</p>
             </div>
           </ItemLogoWrapper>
-          <Arrow
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 0 24 24"
-            width="24px"
-            onClick={handleClick}
-            isOpen={isOpen}
-          >
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" />
-          </Arrow>
+
           <ItemWrapperColor>
             <SvgWrapper>
               <Svg
@@ -168,7 +172,7 @@ function Navbar() {
 
         <ItemBottomWrapper>
           <Hr />
-          <Item>
+          <Item onClick={handleLogout}>
             <SvgWrapper>
               <Svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -224,6 +228,7 @@ const Container = styled.div`
   height: 100%;
   background-color: transparent;
   z-index: 99;
+
   /* @media screen and (max-width: 768px) {
   } */
 `;
@@ -231,6 +236,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   position: relative;
   height: calc(100vh - 100px); // 위아래 margin값을 뺌
+  overflow-y: auto;
   width: ${(props) => (props.isOpen ? "240px" : "80px")};
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 15px;
@@ -243,6 +249,12 @@ const Wrapper = styled.div`
     font-size: 14px;
     display: ${(props) => (props.isOpen ? "block" : "none")};
   }
+  /* ( 크롬, 사파리, 오페라, 엣지 ) 동작  */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; // 인터넷 익스플로러
+  scrollbar-width: none; // 파이어폭스
 `;
 
 const ToggleButton = styled.div`
@@ -253,7 +265,6 @@ const ToggleButton = styled.div`
   background-color: ${({ isDark }) => (isDark ? "#fff" : "#ccc")};
   margin-left: ${(props) => (props.isOpen ? "auto" : "")};
   margin: ${(props) => (props.isOpen ? "" : "auto")};
-
   cursor: pointer;
   &:after {
     content: "";
@@ -341,6 +352,7 @@ const Logo = styled.div`
   border-radius: 10px;
 `;
 const Arrow = styled.svg`
+  z-index: 99;
   position: absolute;
   transform: ${(props) => (props.isOpen ? "scaleX(-1)" : "scaleX(1)")};
   right: -10px;

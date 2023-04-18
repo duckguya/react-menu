@@ -1,5 +1,4 @@
 import Navbar from "./Components/Navbar";
-import TopNavbar from "./Components/TopNavbar";
 import { useRecoilValue } from "recoil";
 import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 // import { Analytics, Dashboard, Likes, Schedule, User } from "./Routes";
@@ -8,7 +7,7 @@ import Dashboard from "./Routes/Dashboard";
 import Schedule from "./Routes/Schedule";
 import Likes from "./Routes/Likes";
 import User from "./Routes/User";
-import { isDarkAtom } from "./atoms";
+import { isDarkAtom, isOpenAtom } from "./atoms";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./theme";
 
@@ -89,8 +88,7 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <div style={{ margin: "50px" }}>
-          {/* <Navbar /> */}
-          <TopNavbar />
+          <Navbar />
         </div>
         <Routes>
           <Route path="/" element={<Dashboard />} />
