@@ -1,4 +1,5 @@
 import Navbar from "./Components/Navbar";
+import TopNavbar from "./Components/TopNavbar";
 import { useRecoilValue } from "recoil";
 import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 // import { Analytics, Dashboard, Likes, Schedule, User } from "./Routes";
@@ -88,7 +89,8 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <div style={{ margin: "50px" }}>
-          <Navbar />
+          {/* <Navbar /> */}
+          <TopNavbar />
         </div>
         <Routes>
           <Route path="/" element={<Dashboard />} />

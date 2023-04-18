@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { isDarkAtom, isOpenAtom } from "../atoms";
 import { Link, useLocation } from "react-router-dom";
 
-function Navbar() {
+function TopNavbar() {
   // const [isOpen, setIsOpen] = useState(true);
   const [state, setState] = useState("/");
   const [isDark, setIsDark] = useRecoilState(isDarkAtom);
@@ -13,7 +13,7 @@ function Navbar() {
 
   useEffect(() => {
     if (window.innerWidth <= 768) {
-      setIsOpen(false);
+      //   setIsOpen(false);
     }
     let path = location.pathname;
     if (path === "/") setState(path);
@@ -32,26 +32,26 @@ function Navbar() {
   return (
     <Container>
       <Wrapper isOpen={isOpen}>
-        <ItemTopWrapper>
-          <ItemLogoWrapper>
-            <Logo />
-            <div>
-              <p>I M Fine SD Team</p>
-              <p style={{ fontSize: "12px" }}>Web Developer</p>
-            </div>
-          </ItemLogoWrapper>
-          <Arrow
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 0 24 24"
-            width="24px"
-            onClick={handleClick}
-            isOpen={isOpen}
-          >
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" />
-          </Arrow>
-          <ItemWrapperColor>
+        <ItemLogoWrapper>
+          <Logo />
+          <div>
+            <p>I M Fine SD Team</p>
+            <p style={{ fontSize: "12px" }}>Web Developer</p>
+          </div>
+        </ItemLogoWrapper>
+        <Arrow
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 0 24 24"
+          width="24px"
+          onClick={handleClick}
+          isOpen={isOpen}
+        >
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" />
+        </Arrow>
+        <ItemTopWrapper isOpen={isOpen}>
+          <ItemWrapperColor isOpen={isOpen}>
             <SvgWrapper>
               <Svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +166,7 @@ function Navbar() {
           </Link>
         </ItemTopWrapper>
 
-        <ItemBottomWrapper>
+        <ItemBottomWrapper isOpen={isOpen}>
           <Hr />
           <Item>
             <SvgWrapper>
@@ -188,22 +188,20 @@ function Navbar() {
 
             <p>Logout</p>
           </Item>
-          <ItemWrapperColor style={{ padding: isOpen ? "" : "10px 0" }}>
-            <SvgWrapper style={{ display: isOpen ? "block" : "none" }}>
-              {isOpen ? (
-                <Svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  enable-background="new 0 0 24 24"
-                  height="24px"
-                  viewBox="0 -3 24 24"
-                  width="24px"
-                >
-                  <rect fill="none" height="24" width="24" />
-                  <path d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z" />
-                </Svg>
-              ) : (
-                ""
-              )}
+          <ItemWrapperColor>
+            {/* <ItemWrapperColor style={{ padding: isOpen ? "" : "10px 0" }}> */}
+            <SvgWrapper>
+              {/* <SvgWrapper style={{ display: isOpen ? "block" : "none" }}> */}
+              <Svg
+                xmlns="http://www.w3.org/2000/svg"
+                enable-background="new 0 0 24 24"
+                height="24px"
+                viewBox="0 -3 24 24"
+                width="24px"
+              >
+                <rect fill="none" height="24" width="24" />
+                <path d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z" />
+              </Svg>
             </SvgWrapper>
             <p>Dark Mode</p>
             <ToggleButton
@@ -224,14 +222,12 @@ const Container = styled.div`
   height: 100%;
   background-color: transparent;
   z-index: 99;
-  /* @media screen and (max-width: 768px) {
-  } */
 `;
 
 const Wrapper = styled.div`
   position: relative;
-  height: calc(100vh - 100px); // 위아래 margin값을 뺌
-  width: ${(props) => (props.isOpen ? "240px" : "80px")};
+  height: ${(props) => (props.isOpen ? "calc(100vh - 100px)" : "70px")};
+  width: calc(100vw - 100px);
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 15px;
   padding: 10px;
@@ -241,7 +237,7 @@ const Wrapper = styled.div`
   transition: all 0.5s ease;
   p {
     font-size: 14px;
-    display: ${(props) => (props.isOpen ? "block" : "none")};
+    /* display: ${(props) => (props.isOpen ? "block" : "none")}; */
   }
 `;
 
@@ -277,7 +273,7 @@ const Items = styled.div`
   display: flex;
   align-items: center;
   color: #7f7f7f;
-  padding: 10px;
+  padding: 5px 10px;
 `;
 const ItemLogoWrapper = styled(Items)`
   p {
@@ -285,10 +281,10 @@ const ItemLogoWrapper = styled(Items)`
   }
 `;
 const Item = styled(Items)`
+  /* display: ${(props) => (props.isOpen ? "none" : "flex")}; */
   margin: 10px;
   cursor: pointer;
   border-radius: 10px;
-
   &:hover {
     background-color: ${(props) => props.theme.hoverBackColor};
   }
@@ -306,6 +302,7 @@ const Item = styled(Items)`
 `;
 
 const ItemWrapperColor = styled(Items)`
+  /* display: ${(props) => (props.isOpen ? "none" : "")}; */
   margin: 10px;
   background-color: ${(props) => props.theme.medium};
   border-radius: 10px;
@@ -360,12 +357,16 @@ const Hr = styled.div`
   height: 1px;
   margin: 10px 0;
 `;
-const ItemTopWrapper = styled.div``;
+const ItemTopWrapper = styled.div`
+  display: ${(props) => (props.isOpen ? "" : "none")};
+  transition: all 0.5s ease;
+`;
 const ItemBottomWrapper = styled.div`
+  display: ${(props) => (props.isOpen ? "flex" : "none")};
   height: 100%;
-  display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  transition: all 0.5s ease;
 `;
 
-export default Navbar;
+export default TopNavbar;
