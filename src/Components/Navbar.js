@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { isDarkAtom } from "../atoms";
+import { isDarkAtom, isOpenAtom } from "../atoms";
 import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(true);
+  // const [isOpen, setIsOpen] = useState(true);
   const [state, setState] = useState("/");
   const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+  const [isOpen, setIsOpen] = useRecoilState(isOpenAtom);
   const location = useLocation();
 
   useEffect(() => {
+    if (window.innerWidth <= 768) {
+      setIsOpen(false);
+    }
     let path = location.pathname;
     if (path === "/") setState(path);
     if (path === "/schedule") setState(path);
@@ -232,11 +236,16 @@ const Wrapper = styled.div`
   box-shadow: gray 1px 1px 15px -5px;
   display: flex;
   flex-direction: column;
+  transition: all 0.5s ease;
   p {
     font-size: 14px;
     display: ${(props) => (props.isOpen ? "block" : "none")};
   }
-  transition: all 0.5s ease;
+
+  /* @media screen and (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+  } */
 `;
 
 const ToggleButton = styled.div`
